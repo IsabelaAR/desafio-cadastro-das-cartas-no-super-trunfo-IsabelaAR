@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    char estado1, estado2, codigo1[10], codigo2[10], cidade1[30], cidade2[30];
+    char estado1[10], estado2[10], codigo1[10], codigo2[10], cidade1[30], cidade2[30];
     int num_turisticos1, num_turisticos2;
     float area1, area2, pib1, pib2;
     float DensPop1, DensPop2, PIBCapita1, PIBCapita2;
@@ -11,33 +11,35 @@ int main() {
     //Obtendo dados inseridos pelo usuário para carta 1
     printf ("Carta 1\n");
     printf ("Insira o estado: ");
-    scanf ("%c", &estado1);
-    printf ("Insira o código: ");
-    scanf ("%s", &codigo1);
+    scanf ("%s", &estado1);
+    //printf ("Insira o código: ");
+    //scanf ("%s", &codigo1);
     printf ("Nome da cidade: ");
     getchar(); //getchar() lê e remove o \n, dessa forma o fgets() n será pulado   
     fgets (cidade1,30,stdin);
+    cidade1[strcspn(cidade1, "\n")] = '\0'; //Remoção do '\n' depois do fgets
     printf ("Insira a população: ");
     scanf ("%lu", &populacao1);
-    printf ("Insira a área: ");
+    /*printf ("Insira a área: ");
     scanf ("%f", &area1);
     printf ("Insira o PIB: ");
     scanf ("%f", &pib1);
     printf ("Insira o número de pontos turísticos: ");
-    scanf ("%d", &num_turisticos1);
+    scanf ("%d", &num_turisticos1);*/
 
     //Obtendo dados inseridos pelo usuário para carta 2
     printf ("\nCarta 2\n");
     printf ("Insira o estado: ");
-    scanf (" %c", &estado2);
-    printf ("Insira o código: ");
-    scanf ("%s", &codigo2);
+    scanf (" %s", &estado2);
+    //printf ("Insira o código: ");
+    //scanf ("%s", &codigo2);
     printf ("Nome da cidade: ");
     getchar();  //getchar() lê e remove o \n, dessa forma o fgets() n será pulado    
     fgets (cidade2,30,stdin);
+    cidade2[strcspn(cidade2, "\n")] = '\0'; //Remoção do '\n' depois do fgets
     printf ("Insira a população: ");
     scanf ("%lu", &populacao2);
-    printf ("Insira a área: ");
+    /*printf ("Insira a área: ");
     scanf ("%f", &area2);
     printf ("Insira o PIB: ");
     scanf ("%f", &pib2);
@@ -89,7 +91,18 @@ int main() {
     printf ("Pontos Turísticos: Carta %d venceu (%d)\n", (num_turisticos1 >= num_turisticos2) ? 1 : 2, num_turisticos1 >= num_turisticos2);
     printf ("Densidade Populacional: Carta %d venceu (%d)\n", (DensPop1 <= DensPop2) ? 1 : 2, DensPop1 <= DensPop2);
     printf ("PIB per Capita: Carta %d venceu (%d)\n", (PIBCapita1 >= PIBCapita2) ? 1 : 2, PIBCapita1 >= PIBCapita2);
-    printf ("Super Poder: Carta %d venceu (%d)\n\n", (SuperPoder1 >= SuperPoder2) ? 1 : 2, SuperPoder1 >= SuperPoder2);
+    printf ("Super Poder: Carta %d venceu (%d)\n\n", (SuperPoder1 >= SuperPoder2) ? 1 : 2, SuperPoder1 >= SuperPoder2);*/
+
+    //Escolhendo um atributo e fazendo sua comparação usando else-if
+    printf ("\n\nComparação de cartas (Atributo: População)\n\n");
+    printf ("Carta 1 - %s (%s): %lu\n", cidade1, estado1, populacao1);
+    printf ("Carta 2 - %s (%s): %lu\n", cidade2, estado2, populacao2);
+
+    if (populacao1 > populacao2){
+        printf ("Resultado: Carta 1 (%s) venceu!\n\n", cidade1);
+    } else {
+        printf ("Resultado: Carta 2 (%s) venceu!\n\n", cidade2);
+    }
 
     return 0;
 }
